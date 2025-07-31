@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Home - My Django App{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-4">
+    {% if students %}
+  <h3 class="mb-3 text-center"> Student Registration Details</h3>
+  
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle text-center">
+      <thead class="table-primary">
+        <tr>
+          <th>Student No</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Date Of Joined</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in students %}
+        <tr>
+            <td>
+               {{ student.id }}
+            </td>
+            <td class="text-left text-uppercase">
+                <a href="{% url 'student_details' student_id=student.id %}">
+                    {{ student.name }}
+                </a>
+            </td>
+            <td class="text-uppercase">{{ student.age }} </td>
+            <td class="text-uppercase">{{ student.email }} </td>
+            <td>{{ student.address }} </td>
+            <td>{{student.created_at}} </td>
+            
+            
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+  </div>
+  <center>
+        <a href="{% url 'student_create' %}" class="btn btn-primary">Add New Student</a>
+    </center>
+  {% else %}
+    <h3 class="text-center">No Students Records Found</h3>
+    <br><br>
+    <center>
+        <a href="{% url 'student_create' %}" class="btn btn-primary">Add New Student</a>
+    </center>
+{% endif %}
+</div>
+
+{% endblock %}

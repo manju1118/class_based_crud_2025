@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Student Create Details{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h3 class="mb-3 text-center"> Add Student </h3>
+    {% if form %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="row">
+    
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <br><br>
+
+      <a href="{% url 'index' %}" class="btn btn-warning">Cancel</a>
+
+  </div>
+      </form>
+    {% endif %}
+</div>
+ 
+<!-- <div class="mb-3">
+    <label for="status" class="form-label">Status</label>
+    <select class="form-select" required id="status" name="status">
+      <option value="Active">Active</option>
+      <option value="Inactive">Inactive</option>
+      <option value="On Leave">On Leave</option>
+    </select>
+  </div> -->
+
+{% endblock %}
